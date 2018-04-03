@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<script>
+	window.onload = function () {
+
+		var dps = []; // dataPoints
+
+		var chart = new CanvasJS.Chart("chartContainer",{  //chart creation
+			title :{
+				text: "Live Random Data"
+			},
+            axisY :{
+            interval : 0.1
+            },			
+			data: [{
+				type: "line",
+				dataPoints: dps 
+			}]
+		});
+        
+		var numbers = [];
+		var sum = 0;
+		var xVal = 0;
+		var yVal = 0.5;	
+		var updateInterval = 50;         //frissítési T [ms]
+		var dataLength = 500; // number of dataPoints visible at any point
+
+		var updateChart = function (count) {
+			count = count || 1;
+			// count is number of times loop runs to generate random dataPoints.
+			
+			for (var j = 0; j < count; j++) {	
+			    numbers.push(Math.random()); //minden lefutásnál tömb egy új random számmal bõvül
+				sum += numbers[xVal];  // összeg tárolása
+				yVal = sum/xVal;//yVal +  Math.round(5 + Math.random() *(-5-5));             átlag ábrázolás
+				dps.push({
+					x: xVal,
+					y: yVal
+				});
+				xVal++;
+			};
+			if (dps.length > dataLength)
+			{
+				dps.shift();				
+			}
+			
+			chart.render();		
+
+		};
+
+		// generates first set of dataPoints
+		updateChart(dataLength); 
+
+		// update chart after specified time. 
+		setInterval(function(){updateChart()}, updateInterval); 
+
+	}
+	</script>
+	<script src="canvasjs.min.js"></script>
+</head>
+<body>
+	<div id="chartContainer" style="height: 300px; width:100%;">
+	</div>
+</body>
+</html>
