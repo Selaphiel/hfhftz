@@ -38,3 +38,24 @@ void LCD_SendCommand(unsigned char command);
 void LCD_SendStr(char *str);
 
 #endif
+
+
+Dear Dr. Mosavi
+
+I have a question about the language of the thesis. Do you think I can submit the thesis in english? 
+The institution requires the thesis to be written in hungarian.
+Have you had a problem with this before with another student?
+
+Best Regards,
+Csaba
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
